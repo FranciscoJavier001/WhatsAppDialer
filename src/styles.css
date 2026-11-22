@@ -55,13 +55,14 @@ h1 span { color: var(--muted); font-weight: 500; }
 #phone::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
 .clear { flex-shrink: 0; }
 .dial-pad {
-  --key: clamp(46px, min(21vw, calc((var(--dialer-height) - 400px) / 4)), 78px);
+  --key: clamp(46px, min(23vw, calc((var(--dialer-height) - 400px) / 4)), 96px);
+  width: min(100%, 350px);
+  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(3, var(--key));
-  justify-content: space-between;
+  justify-content: center;
   align-self: center;
-  row-gap: clamp(9px, calc(var(--dialer-height) * .022), 20px);
-  padding-inline: clamp(4px, 2vw, 10px);
+  gap: clamp(10px, calc(var(--dialer-height) * .024), 22px) clamp(12px, 5.5vw, 24px);
 }
 .dial-key { width: var(--key); aspect-ratio: 1; border: 1px solid var(--edge); background: #222824; border-radius: 50%; display: grid; align-content: center; justify-items: center; font-size: clamp(1.5rem, 4.6vh, 2.15rem); line-height: 1; user-select: none; transition: background .12s, transform .12s; }
 .dial-key small { color: var(--muted); font-size: .64rem; font-weight: 700; letter-spacing: .13em; margin-top: 4px; }
