@@ -20,7 +20,9 @@ function App() {
   }
 
   function press(key) {
-    edit(current.current.number + key)
+    const { number } = current.current
+    if (number.length >= 10) return
+    edit(number + key)
     if (key === '*' || key === '#') setFeedback('Usa únicamente dígitos para abrir WhatsApp.')
   }
 
