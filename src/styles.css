@@ -30,7 +30,13 @@ h1 span { color: var(--muted); font-weight: 500; }
 .brand-mark { width: 36px; height: 36px; background: #183427; color: var(--green); }
 .icon { width: 44px; height: 44px; border: 0; background: transparent; color: var(--muted); }
 .gear { margin-inline-start: auto; background: var(--surface); border: 1px solid var(--edge); }
-.dialer { display: grid; gap: clamp(12px, 2.3vh, 22px); margin-top: clamp(18px, 4vh, 38px); }
+.dialer {
+  --dialer-height: calc(100dvh - max(0px, env(safe-area-inset-top) - 16px)
+    - max(0px, env(safe-area-inset-bottom) - 16px));
+  display: grid;
+  gap: clamp(9px, calc(var(--dialer-height) * .019), 18px);
+  margin-top: clamp(14px, calc(var(--dialer-height) * .03), 28px);
+}
 .number-section { min-width: 0; }
 .number-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .number-heading span { font-size: .8125rem; color: var(--muted); text-align: end; overflow-wrap: anywhere; }
@@ -44,11 +50,12 @@ h1 span { color: var(--muted); font-weight: 500; }
 #phone::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
 .clear { flex-shrink: 0; }
 .dial-pad {
-  --key: clamp(50px, min(21vw, 10.8dvh), 82px);
+  --key: clamp(46px, min(21vw, calc((var(--dialer-height) - 400px) / 4)), 78px);
   display: grid;
   grid-template-columns: repeat(3, var(--key));
-  justify-content: center;
-  gap: clamp(6px, 1.6dvh, 14px) clamp(13px, 5vw, 26px);
+  justify-content: space-between;
+  row-gap: clamp(9px, calc(var(--dialer-height) * .022), 20px);
+  padding-inline: clamp(4px, 2vw, 10px);
 }
 .dial-key { width: var(--key); aspect-ratio: 1; border: 1px solid var(--edge); background: #222824; border-radius: 50%; display: grid; align-content: center; justify-items: center; font-size: clamp(1.5rem, 4.6vh, 2.15rem); line-height: 1; user-select: none; transition: background .12s, transform .12s; }
 .dial-key small { color: var(--muted); font-size: .64rem; font-weight: 700; letter-spacing: .13em; margin-top: 4px; }
@@ -106,7 +113,7 @@ textarea { width: 100%; resize: vertical; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
-@media (max-height: 650px) {
-  .dialer { gap: 10px; margin-top: 16px; }
-  .dial-pad { --key: clamp(48px, min(21vw, 9.5dvh), 72px); row-gap: 7px; }
+@media (max-height: 600px) {
+  .dialer { gap: 9px; margin-top: 14px; }
+  .dial-pad { row-gap: 10px; }
 }

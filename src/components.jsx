@@ -1,7 +1,7 @@
 import { ChevronDown, RotateCcw, X } from 'lucide-react'
 import { countries } from './phone.js'
 
-export function PhoneDisplay({ input, country, number, change, edit, paste, clear }) {
+export function PhoneDisplay({ input, country, number, change, paste, clear }) {
   const { prefix, name } = countries.find(({ code }) => code === country)
   return (
     <section className="number-section" aria-label="Número de destino">
@@ -16,8 +16,8 @@ export function PhoneDisplay({ input, country, number, change, edit, paste, clea
             {countries.map(item => <option key={item.code} value={item.code}>{item.name} (+{item.prefix})</option>)}
           </select>
         </div>
-        <input id="phone" ref={input} value={number} type="tel" inputMode="tel" autoComplete="off"
-          placeholder="Escribe un número" onChange={e => edit(e.target.value)} onPaste={paste} />
+        <input id="phone" ref={input} value={number} type="tel" inputMode="none" autoComplete="off" readOnly
+          placeholder="Escribe un número" onPaste={paste} />
         {number && <button type="button" className="icon clear" aria-label="Borrar todo" onClick={clear}><X size={20} /></button>}
       </div>
     </section>

@@ -44,8 +44,7 @@ function App() {
       const text = await navigator.clipboard.readText()
       if (before === current.current) paste(text)
     } catch {
-      input.current?.focus()
-      setFeedback('Mantén pulsado el campo y usa Pegar, o utiliza el atajo del teclado.')
+      setFeedback('No se pudo leer el portapapeles. Si el navegador solicita permiso para pegar, concédelo y vuelve a intentarlo.')
     }
   }
 
@@ -72,13 +71,16 @@ function App() {
   }
 
   function onKeyDown(event) {
-    if (event.target === input.current) {
-      if (event.key === 'Enter' && !event.nativeEvent.isComposing) openWhatsApp()
+    const phoneFocused = event.target === input.current
+    if (settings || matchMedia('(orientation: landscape) and (hover: none) and (pointer: coarse)').matches || event.ctrlKey || event.metaKey || event.altKey ||
+        (event.nativeEvent ?? event).isComposing ||
+        (!phoneFocused && event.target.closest('input, textarea, select, [contenteditable]'))) return
+    if (phoneFocused && event.key === 'Enter') {
+      event.preventDefault()
+      openWhatsApp()
       return
     }
-    if (settings || matchMedia('(orientation: landscape) and (hover: none) and (pointer: coarse)').matches || event.ctrlKey || event.metaKey || event.altKey ||
-        event.target.closest('input, textarea, select, [contenteditable]')) return
-    if (!/^[0-9*#]$/.test(event.key) && event.key !== 'Backspace') return
+    if (!/^[0-9*#+]$/.test(event.key) && event.key !== 'Backspace') return
     event.preventDefault()
     if (event.repeat) return
     if (event.key === 'Backspace') backspace()
@@ -124,7 +126,7 @@ function App() {
           <div className="dialer">
             <PhoneDisplay input={input} country={state.country} number={state.number}
               change={country => { update({ country }); setFeedback('') }}
-              edit={edit} paste={e => { e.preventDefault(); paste(e.clipboardData.getData('text')) }}
+              paste={e => { e.preventDefault(); paste(e.clipboardData.getData('text')) }}
               clear={() => { edit(''); input.current?.focus({ preventScroll: true }) }} />
             <DialPad press={press} />
             <div className="actions">
