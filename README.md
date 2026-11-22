@@ -1,4 +1,4 @@
-# WhatsApp Dialer Pro
+# WhatsApp Num
 
 PWA para abrir chats de WhatsApp desde un teclado numérico. El número, el país y los ajustes del mensaje se guardan en el almacenamiento local de la instalación o del navegador.
 

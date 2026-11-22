@@ -115,7 +115,7 @@ function App() {
       <OrientationGuard>
         <header className="topbar">
           <span className="brand-mark"><MessageCircle size={20} aria-hidden="true" /></span>
-          <h1 tabIndex={-1} ref={heading}>WhatsApp <span>Dialer Pro</span></h1>
+          <h1 tabIndex={-1} ref={heading}>WhatsApp <span>Num</span></h1>
           {!settings && <button ref={gear} className="icon gear" aria-label="Ajustes" onClick={showSettings}><Settings size={21} /></button>}
         </header>
         {storageError && <p className="storage-error" role="alert">El almacenamiento está bloqueado o lleno. Tus cambios podrían perderse al cerrar.</p>}

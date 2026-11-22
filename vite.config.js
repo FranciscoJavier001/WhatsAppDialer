@@ -10,8 +10,8 @@ export default defineConfig({
       includeAssets: ['apple-touch-icon.png'],
       manifest: {
         id: '/',
-        name: 'WhatsApp Dialer Pro',
-        short_name: 'Dialer Pro',
+        name: 'WhatsApp Num',
+        short_name: 'WhatsApp Num',
         description: 'Abre chats de WhatsApp desde el teclado.',
         lang: 'es-MX',
         start_url: '/',
@@ -23,7 +23,7 @@ export default defineConfig({
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
-          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icon-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
     }),
