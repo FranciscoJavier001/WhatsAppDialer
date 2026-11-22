@@ -30,10 +30,10 @@ export function DialPad({ press }) {
   return (
     <div className="dial-pad" role="group" aria-label="Teclado numérico">
       {Array.from('123456789*0#', (key, index) => (
-        <button type="button" key={key} aria-label={key === '*' ? 'Asterisco' : key === '#' ? 'Numeral' : key}
+        <button type="button" key={key} aria-label={key === '*' ? 'Asterisco' : key === '#' ? 'Numeral' : undefined}
           className="dial-key" onClick={() => press(key)}>
           <span>{key}</span>
-          {letters[index] && <small aria-hidden="true">{letters[index]}</small>}
+          {letters[index] && <small>{letters[index]}</small>}
         </button>
       ))}
     </div>
@@ -56,6 +56,10 @@ export function SettingsPanel({ state, update, back }) {
         <p>{state.message.trim() ? state.message : 'Todavía no hay un mensaje.'}</p>
       </div>
       <button type="button" className="action back" onClick={back}>Volver al teclado</button>
+      <nav className="settings-links" aria-label="Información del marcador">
+        <a href="/bienvenida.html">Uso e instalación</a>
+        <a href="/privacidad.html">Privacidad</a>
+      </nav>
     </section>
   )
 }

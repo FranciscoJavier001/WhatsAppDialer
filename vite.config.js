@@ -1,18 +1,28 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: {
+        dialer: fileURLToPath(new URL('./index.html', import.meta.url)),
+        welcome: fileURLToPath(new URL('./bienvenida.html', import.meta.url)),
+        privacy: fileURLToPath(new URL('./privacidad.html', import.meta.url)),
+      },
+    },
+  },
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['apple-touch-icon.png'],
+      includeAssets: ['apple-touch-icon.png', 'icon.svg'],
       manifest: {
         id: '/',
-        name: 'WhatsApp Num',
-        short_name: 'WhatsApp Num',
-        description: 'Abre chats de WhatsApp desde el teclado.',
+        name: 'WumApp',
+        short_name: 'WumApp',
+        description: 'Contacta sin guardar. Abre chats de WhatsApp desde el teclado.',
         lang: 'es-MX',
         start_url: '/',
         scope: '/',
