@@ -129,17 +129,19 @@ function App() {
               paste={e => { e.preventDefault(); paste(e.clipboardData.getData('text')) }}
               clear={() => { edit(''); input.current?.focus({ preventScroll: true }) }} />
             <DialPad press={press} />
-            <div className="actions">
-              <button className="action" onClick={copy}><Copy size={17} />Copiar</button>
-              <button className="action" onClick={clipboardPaste}><Clipboard size={17} />Pegar</button>
-              <button className="action" aria-label="Borrar último dígito" disabled={!state.number} onClick={backspace}><Delete size={20} />Borrar</button>
+            <div className="dialer-footer">
+              <p className="feedback" role="status">{feedback}</p>
+              <div className="actions">
+                <button className="action" onClick={copy}><Copy size={17} />Copiar</button>
+                <button className="action" onClick={clipboardPaste}><Clipboard size={17} />Pegar</button>
+                <button className="action" aria-label="Borrar último dígito" disabled={!state.number} onClick={backspace}><Delete size={20} />Borrar</button>
+              </div>
+              {link ? (
+                <a className="whatsapp" href={link}><MessageCircle size={23} />Abrir WhatsApp</a>
+              ) : (
+                <button className="whatsapp" onClick={openWhatsApp}><MessageCircle size={23} />Abrir WhatsApp</button>
+              )}
             </div>
-            {link ? (
-              <a className="whatsapp" href={link}><MessageCircle size={23} />Abrir WhatsApp</a>
-            ) : (
-              <button className="whatsapp" onClick={openWhatsApp}><MessageCircle size={23} />Abrir WhatsApp</button>
-            )}
-            <p className="feedback" role="status">{feedback}</p>
           </div>
         )}
       </OrientationGuard>
